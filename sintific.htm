@@ -1,0 +1,350 @@
+<!-- sintific.htm -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemorphism calci</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+ body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    background-image: url('john-fowler-aaIN3y2zcMQ-unsplash.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(4.5px);
+}
+
+.container {
+    margin-left: 2.5em; 
+    padding: 56px; 
+    border-radius: 12px; 
+    box-shadow: 0px 5px 20px rgba(90, 80, 155, 0.497);
+}
+
+.content {
+    width: 100%;
+    margin-top: 2.5em; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.row button {
+    padding: 1em 3em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 16px; 
+    height: 48px; 
+    width: 96px;
+    margin: 10px; 
+}
+
+.display #screen {
+    margin-bottom: 1em;
+    width: 100%;
+    height: 100px; 
+    font-size: 40px;
+    outline: none;
+    border: none;
+    text-align: right;
+    padding-right: 0.5em;
+    background: transparent;
+    border-radius: 8px; 
+    border: 1px solid #1111117a;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        margin: 1em;
+        padding: 20px;
+    }
+
+    .row button {
+        padding: 0.5em 1.8em;
+        height: 30px;
+        width: 60px;
+        font-size: 14px;
+    }
+
+    .display #screen {
+        height: 50px;
+        font-size: 25px;
+    }
+}
+
+    .row button:hover:before {
+  opacity:1;
+}
+
+.row button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(11, 10, 10);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+#ac::after{
+    background: #b83434;
+}
+#ce::after{
+    background: #002affd0;
+}
+#eval::after{
+    background:rgba(255, 157, 0, 0.886);
+}
+.row button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowingbn5 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+@keyframes glowingrow button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+ 
+
+    #eval {
+        background: #0a5067;
+        color: #fff;
+        box-shadow: inset 5px 5px 8px #66d9ff,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    #eval:hover {
+        box-shadow: inset 5px 5px 8px #00ace6,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    #ac{
+        background: #33cc33;
+        color: #fff;
+    }
+
+    #ac:hover {
+        box-shadow: inset 5px 5px 8px #2eb82e,
+            inset -5px -5px 8px #33cc33;
+    }
+
+    #ce {
+        background: #ff3399;
+        color: #fff;
+    }
+
+    #ce:hover {
+        box-shadow: inset 5px 5px 8px #e60073,
+            inset -5px -5px 8px #ff3399;
+    }
+    #btn2 button{
+    background-color:rgba(22, 31, 34, 0.251);
+
+    color: rgba(122, 41, 73, 0.919);
+    
+    padding: 10px 20px;
+    text-align: center;
+    
+    border: 1px solid rgba(34, 22, 22, 0.469);
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 50px; 
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom:15%;
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+#btn2 button:hover {
+    /* background-color: #45a049; */
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0 0 5px #96216593,
+    0 0 25px #96216593,
+    0 0 50px #96216593,
+    0 0 100px #822f9089,
+    0 0 200px #96216593;
+}
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="display">
+            <input id="screen" type="text" placeholder="0">
+        </div>
+
+        <div class="btns">
+            <div class="row">
+                <button id="ce" onclick="backspc()">CE</button>
+                <button onclick="fact()">x!</button>
+                <button class="btn">(</button>
+                <button class="btn">)</button>
+                <button class="btn">%</button>
+                <button id="ac" onclick="screen.value=''">AC</button>
+            </div>
+
+            <div class="row">
+                <button onclick="sin()">sin</button>
+                <button onclick="pi()">π</button>
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">÷</button>
+            </div>
+
+            <div class="row">
+                <button onclick="cos()">cos</button>
+                <button onclick="log()">log</button>
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+            </div>
+
+            <div class="row">
+                <button onclick="tan()">tan</button>
+                <button onclick="sqrt()">√</button>
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">-</button>
+            </div>
+
+            <div class="row">
+                <button onclick="e()">e</button>
+                <button onclick="pow()">x<span style="position: relative; bottom: .4em; right: .1em;">2</span>
+                </button>
+                <button class="btn">0</button>
+                <button class="btn">.</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+                <button class="btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div id="btn2">
+        <a href="index.htm"><button class="btn2">BACK​</button></a>
+
+    </div>
+</body>
+<script>
+    var screen = document.querySelector('#screen');
+    var btn = document.querySelectorAll('.btn');
+
+    for (item of btn) {
+        item.addEventListener('click', (e) => {
+            btntext = e.target.innerText;
+
+            if (btntext == '×') {
+                btntext = '*';
+            }
+
+            if (btntext == '÷') {
+                btntext = '/';
+            }
+            screen.value += btntext;
+        });
+    }
+
+    function sin() {
+        screen.value = Math.sin(screen.value);
+    }
+
+    function cos() {
+        screen.value = Math.cos(screen.value);
+    }
+
+    function tan() {
+        screen.value = Math.tan(screen.value);
+    }
+
+    function pow() {
+        screen.value = Math.pow(screen.value, 2);
+    }
+
+    function sqrt() {
+        screen.value = Math.sqrt(screen.value, 2);
+    }
+
+    function log() {
+        screen.value = Math.log(screen.value);
+    }
+
+    function pi() {
+        screen.value = 3.14159265359;
+    }
+
+    function e() {
+        screen.value = 2.71828182846;
+    }
+
+    function fact() {
+        var i, num, f;
+        f = 1
+        num = screen.value;
+        for (i = 1; i <= num; i++) {
+            f = f * i;
+        }
+
+        i = i - 1;
+
+        screen.value = f;
+    }
+
+    function backspc() {
+        screen.value = screen.value.substr(0, screen.value.length - 1);
+    }
+    
+</script>
+
+</html>
